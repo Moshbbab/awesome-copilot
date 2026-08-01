@@ -3,7 +3,7 @@ title: 'Agents and Subagents'
 description: 'Learn how delegated subagents differ from primary agents, when to use them, and how to launch them in VS Code and Copilot CLI.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-07-01
+lastUpdated: 2026-08-01
 estimatedReadingTime: '9 minutes'
 tags:
   - agents
@@ -157,7 +157,27 @@ Because it runs as a sub-agent layer rather than replacing your primary model, y
 
 > **Note**: This is an experimental feature and may change. Provide feedback via `/feedback` if you find it useful.
 
-## Orchestration patterns that work well
+## Sessions sidebar for multi-agent management in Copilot CLI
+
+*(v1.0.76+, experimental)* The **Sessions sidebar** provides a visual panel for managing multiple concurrent Copilot CLI sessions — including sessions where subagents are running — without switching terminal windows.
+
+Enable it with experimental mode:
+
+```
+/experimental on
+```
+
+Once enabled, the sidebar appears alongside your active session and lets you:
+
+- **Switch between sessions** — jump to any active session, including ones running subagents in the background
+- **Spawn new sessions** — open a fresh session without closing the current one
+- **See session status at a glance** — each session card shows what's running and whether it's idle, active, or blocked
+
+This complements `/fleet` and other multi-agent workflows: you can launch a `/fleet` operation in one session and monitor progress or provide guidance in another, all without leaving the CLI.
+
+> **Tip**: The Sessions sidebar is particularly useful when running long agentic tasks that don't require constant attention. Keep the sidebar open and check in periodically instead of waiting at the terminal.
+
+
 
 ### Coordinator and worker
 
