@@ -3,7 +3,7 @@ title: 'Using the Copilot Coding Agent'
 description: 'Learn how to use GitHub Copilot coding agent to autonomously work on issues, generate pull requests, and automate development tasks.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-05-13
+lastUpdated: 2026-08-02
 estimatedReadingTime: '12 minutes'
 tags:
   - coding-agent
@@ -376,6 +376,36 @@ Since v1.0.47, `--resume` also surfaces **cloud agent sessions that haven't yet 
 | No PR required | You can steer tasks that haven't yet opened a pull request |
 
 > **Note**: Remote control replaces the earlier "steering" feature. If you see references to steering in older documentation, remote control is the updated equivalent.
+
+## Controlling Approval Modes
+
+*(v1.0.78+)* When running a coding agent session via Copilot CLI, you can switch between approval modes with the `/permissions` command:
+
+```
+/permissions
+```
+
+This opens a dialog to choose how much autonomy you grant:
+
+- **Interactive** — the agent asks for approval before each tool use
+- **Plan mode** — the agent plans first, then executes with approval
+- **Autopilot** — the agent works without per-step approval (use with hooks for guardrails)
+
+*(v1.0.76+)* When in autopilot mode, the agent now **stays in autopilot after completing a task** (`task_complete`) by default, so back-to-back autonomous tasks don't require you to re-enable autopilot. Set `stayInAutopilot: false` in your settings to return to interactive mode after each task.
+
+## Enterprise Administration
+
+### Managed Sandbox Policy
+
+*(v1.0.76+)* Enterprise administrators can enforce a minimum sandbox security floor across all developer sessions. Managed settings **tighten but never loosen** the user's sandbox policy. When a managed policy is in effect:
+
+- The `/sandbox` dialog surfaces org-configured values with locked fields
+- Managed filesystem paths are shown so admins can verify enforcement
+- Users cannot relax security below the org-defined floor
+
+*(v1.0.77+)* Managed sandbox policy can also be enforced via **macOS and Windows native MDM settings**, so IT teams can distribute and enforce Copilot sandbox policy without requiring users to configure anything themselves.
+
+This is particularly useful for regulated environments where you need to ensure the coding agent cannot access certain filesystem paths or network resources, regardless of individual user settings.
 
 ## Hooks and the Coding Agent
 
