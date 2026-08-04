@@ -3,7 +3,7 @@ title: 'Installing and Using Plugins'
 description: 'Learn how to find, install, and manage plugins that extend GitHub Copilot CLI with reusable agents, skills, hooks, and integrations.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-07-28
+lastUpdated: 2026-08-04
 estimatedReadingTime: '8 minutes'
 tags:
   - plugins
@@ -206,6 +206,29 @@ Browse to the plugin via `@agentPlugins` in the Extensions search view or via **
 
 ## Managing Plugins
 
+### Enabling and Disabling Plugins
+
+*(v1.0.76+)* You can enable or disable individual plugins, agents, instructions, hooks, and LSP servers without uninstalling them, directly from within a Copilot session:
+
+```
+/plugins                          # open the plugin management panel
+/plugins enable my-plugin         # re-enable a disabled plugin
+/plugins disable my-plugin        # disable a plugin without uninstalling it
+```
+
+You can also target specific components within a plugin:
+
+```
+/plugins enable --skill my-skill  # enable a specific skill
+/plugins disable --mcp my-server  # disable an MCP server from a plugin
+```
+
+Disabling a plugin suppresses its agents, skills, and hooks for the current session without removing it from disk. This is useful for temporarily switching off a plugin that conflicts with another, or for debugging which plugin is affecting behavior.
+
+Once disabled plugins are managed within a session, your settings persist for future sessions in the same environment.
+
+### Keeping Plugins Updated
+
 Once installed, plugins are managed with a few simple commands:
 
 ```bash
@@ -221,6 +244,8 @@ copilot plugin marketplace update
 # Remove a plugin
 copilot plugin uninstall my-plugin
 ```
+
+> **Auto-updates for first-party plugins (v1.0.78+)**: Plugins distributed through the official `copilot-plugins` marketplace automatically update to the latest version at session start. This means you always get new features and fixes without manually running `copilot plugin update`. Community plugins from `awesome-copilot` and other marketplaces continue to require manual updates.
 
 ### Loading Plugins from a Local Directory
 
