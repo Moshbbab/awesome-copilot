@@ -3,7 +3,7 @@ title: 'Copilot Configuration Basics'
 description: 'Learn how to configure GitHub Copilot at user, workspace, and repository levels to optimize your AI-assisted development experience.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-04
+lastUpdated: 2026-08-06
 estimatedReadingTime: '10 minutes'
 tags:
   - configuration
@@ -517,13 +517,9 @@ You can also press **x** on a highlighted session in the session picker (`--resu
 
 In the session picker, press **`s`** to cycle the sort order: relevance, last used, created, or name. The picker also shows the branch name and idle/in-use status for each session.
 
-**Sessions Sidebar** *(v1.0.76+, experimental)*: The Sessions Sidebar is a persistent panel for managing multiple concurrent sessions — switch between them, spawn new ones, and see their status at a glance, all without leaving your current session. Enable it with `/experimental on`, then toggle it on:
+**Sessions tab and sidebar** *(v1.0.76+ experimental, v1.0.79+ GA)*: The Sessions panel lets you manage multiple concurrent sessions — switch between them, spawn new ones, and see their status at a glance, all without leaving your current session. In v1.0.79+, this is available as a first-class **Sessions tab** in the tab bar alongside your active conversation (no longer requires enabling experimental features). In earlier versions, enable it with `/experimental on` first.
 
-```
-/experimental on
-```
-
-With the sidebar open, you can see all running and backgrounded sessions in a split-view panel alongside your active conversation. Sessions are listed with their name, working directory, and running status. Click or keyboard-navigate to switch sessions instantly. Use this when you regularly juggle several parallel workstreams and want a persistent view of all your sessions rather than accessing them through the `/resume` picker.
+With the panel open, you can see all running and backgrounded sessions in a split-view alongside your active conversation. Sessions are listed with their name, working directory, and running status. Click or keyboard-navigate to switch sessions instantly. Use this when you regularly juggle several parallel workstreams and want a persistent view of all your sessions rather than accessing them through the `/resume` picker.
 
 The `/rewind` command opens a timeline picker that lets you roll back the conversation to any earlier point in history. You can also trigger it by pressing **double-Esc**:
 
@@ -577,13 +573,14 @@ This creates a branch named from your task description and begins working on it 
 
 After the command runs, the session is inside the new worktree. Use this when you want to work on a second task in parallel without stashing changes or opening a new terminal. In v1.0.64+ you can also use the experimental `--worktree` flag at startup (`copilot -w [name]`) to create or reuse a worktree under `<repo>.worktrees/` before the session begins.
 
-The `/new-worktree` command *(v1.0.78+, experimental)* creates a new worktree and starts a **fresh conversation** in it — without inheriting the current session's history. This is useful when you want a completely clean slate for a new task in a parallel branch:
+The `/new-worktree` command *(v1.0.78+, experimental)* and its stable equivalent `/worktree new` *(v1.0.79+)* create a new worktree and start a **fresh conversation** in it — without inheriting the current session's history. This is useful when you want a completely clean slate for a new task in a parallel branch:
 
 ```
-/new-worktree my-feature-branch
+/worktree new my-feature-branch
+/new-worktree my-feature-branch   # experimental alias, v1.0.78+
 ```
 
-Unlike `/worktree` (which keeps the current conversation), `/new-worktree` is the equivalent of opening a new terminal, switching to a worktree, and starting fresh — all in one step.
+Unlike `/worktree` (which keeps the current conversation), `/worktree new` is the equivalent of opening a new terminal, switching to a worktree, and starting fresh — all in one step.
 
 The `/every` command (also available as `/loop` since v1.0.64) schedules a recurring prompt to run automatically at a specified interval. The companion `/after` command runs a prompt once after a specified delay. Both are useful for self-paced automation — polling for results, periodically summarizing progress, or triggering other slash commands on a timer:
 
@@ -799,9 +796,17 @@ copilot --no-sandbox -p "Set up development environment with system tools"
 
 These flags apply only to the current invocation — your persisted sandbox preference remains unchanged.
 
-**`allowDevToolCaches` sandbox setting** *(v1.0.78+, on by default)*: When the sandbox is enabled, this setting grants sandboxed builds access to toolchain caches, registries, and installs (npm cache, pip cache, Go module cache, etc.) so builds work without extra setup. Set it to `false` in `/settings` to opt out if you want a stricter sandbox that blocks all toolchain cache access.
+**`allowDevToolAccess` sandbox setting** *(v1.0.79+, on by default; previously `allowDevToolCaches` in v1.0.78)*: When the sandbox is enabled, this setting grants sandboxed builds access to toolchain caches, registries, and config (npm cache, pip cache, Go module cache, etc.) so builds work without extra setup. Set it to `false` in `/settings` to opt out if you want a stricter sandbox.
 
-The `--attachment` flag (available in prompt mode, `-p`) lets you attach files — images or native documents — to the initial prompt in non-interactive mode:
+> **Breaking change (v1.0.79)**: The setting was renamed from `allowDevToolCaches` to `allowDevToolAccess`. The old key is no longer read — an existing `false` opt-out reverts to the default (on). If you previously set `allowDevToolCaches: false`, rename it to `allowDevToolAccess: false` in your `settings.json` or MDM policy.
+
+**`pinnedPrompts` setting** *(v1.0.79+, off by default)*: Controls whether the current prompt is "pinned" in a dedicated row at the top of the terminal, making it easier to see your active input while output scrolls by. Off by default (and automatically disabled on terminals under 30 rows where it would crowd output). Set it to `true` in `/settings` to enable it:
+
+```
+/settings pinnedPrompts true
+```
+
+
 
 ```bash
 copilot -p "Summarize the architecture shown in these diagrams" \
