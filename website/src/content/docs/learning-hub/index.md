@@ -18,6 +18,8 @@ New to GitHub Copilot? Start here to understand the tools available to you.
 
 **Workshop**: Prefer to learn by building? Work through [Hands-on with GitHub Copilot's agents](copilot-workshops/) — a hands-on workshop with four harnesses (VS Code, Copilot CLI, Copilot app, and cloud agent) built around a shared Tailspin Toys backlog.
 
+**Building on Copilot**: Want to embed agents in your own application? Learn [Embedding Agents with the GitHub Copilot SDK](using-the-copilot-sdk/) to call the same agent engine behind Copilot CLI from Node.js, Python, Go, .NET, Rust, or Java.
+
 ## Fundamentals
 
 Essential concepts to tailor GitHub Copilot beyond its default experience. Start with

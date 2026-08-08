@@ -14,6 +14,7 @@ relatedArticles:
   - ./agents-and-subagents.md
   - ./creating-effective-skills.md
   - ./understanding-mcp-servers.md
+  - ./using-the-copilot-sdk.md
 prerequisites:
   - Basic understanding of GitHub Copilot chat
   - Familiarity with agents, skills, and instructions
