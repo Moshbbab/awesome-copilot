@@ -3,7 +3,7 @@ title: 'Copilot Configuration Basics'
 description: 'Learn how to configure GitHub Copilot at user, workspace, and repository levels to optimize your AI-assisted development experience.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-09
+lastUpdated: 2026-08-10
 estimatedReadingTime: '10 minutes'
 tags:
   - configuration
@@ -191,6 +191,8 @@ my-monorepo/
 ```
 
 When you work inside `packages/api/`, Copilot loads configuration from `packages/api/.github/`, then `packages/.github/` (if it exists), then the root `.github/`. This layered discovery ensures the right context is active no matter where in the repository you're working.
+
+**Faster search in large monorepos** *(v1.0.79+)*: For large monorepos, GitHub Copilot CLI automatically switches its file search from `ripgrep` to [tgrep](https://github.com/microsoft/tgrep), a trigram-indexed grep built for fast regex search across very large codebases. This happens transparently — there's nothing to configure — and means searches stay responsive even in repositories with hundreds of thousands of files.
 
 ### Personal Skills Directory
 
@@ -444,6 +446,8 @@ These files follow the same format as `config.json` and are loaded after the glo
 ### Model Picker
 
 The model picker opens in a **full-screen view** with inline reasoning effort adjustment. Use the **← / →** arrow keys to change the reasoning effort level (`low`, `medium`, `high`) directly from the picker without leaving the session. The current reasoning effort level is also displayed in the model header (e.g., `claude-sonnet-4.6 (high)`) so you always know which level is active.
+
+**Grouped model picker** *(v1.0.79+)*: The model picker organizes available models into **Recent**, **Recommended**, **New**, and other sections instead of a single flat list, making it faster to find the model you want as the number of available models grows. Press **Shift+Tab** to switch between grouping views.
 
 **Auto mode and server-side model routing** (v1.0.43+): When you select **Auto** as your model, the CLI uses server-side model routing for real-time model selection. Instead of locking in a single model at session start, Auto mode evaluates each request and routes it to the most appropriate model dynamically. This means straightforward questions can be handled by a faster model while complex reasoning tasks are automatically escalated — without you needing to switch models manually.
 
