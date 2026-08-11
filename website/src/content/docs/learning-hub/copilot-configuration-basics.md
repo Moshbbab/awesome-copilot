@@ -3,7 +3,7 @@ title: 'Copilot Configuration Basics'
 description: 'Learn how to configure GitHub Copilot at user, workspace, and repository levels to optimize your AI-assisted development experience.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-09
+lastUpdated: 2026-08-11
 estimatedReadingTime: '10 minutes'
 tags:
   - configuration
@@ -445,6 +445,8 @@ These files follow the same format as `config.json` and are loaded after the glo
 
 The model picker opens in a **full-screen view** with inline reasoning effort adjustment. Use the **← / →** arrow keys to change the reasoning effort level (`low`, `medium`, `high`) directly from the picker without leaving the session. The current reasoning effort level is also displayed in the model header (e.g., `claude-sonnet-4.6 (high)`) so you always know which level is active.
 
+**Grouped model list** *(v1.0.79+)*: The picker now organizes models into **Recent**, **Recommended**, **New**, and other sections instead of a single flat list. Press **Shift+Tab** to cycle between grouping views, making it faster to find a model you've used before or discover newly available ones.
+
 **Auto mode and server-side model routing** (v1.0.43+): When you select **Auto** as your model, the CLI uses server-side model routing for real-time model selection. Instead of locking in a single model at session start, Auto mode evaluates each request and routes it to the most appropriate model dynamically. This means straightforward questions can be handled by a faster model while complex reasoning tasks are automatically escalated — without you needing to switch models manually.
 
 **Model family aliases** (v1.0.64+): Instead of typing a full model name, you can use short family aliases in the model setting: `opus`, `sonnet`, `haiku` (Anthropic), and `gpt`, `gemini` (Google/OpenAI). The CLI resolves the alias to the latest available model in that family. This is especially useful in scripts or configuration files where you want to track the best model in a family without hardcoding a version string. Recent models available include **Claude Opus 5** (v1.0.75+), the latest in Anthropic's Opus family for the most demanding tasks, and **Grok 4.5** (v1.0.76+) from xAI.
@@ -818,6 +820,12 @@ These flags apply only to the current invocation — your persisted sandbox pref
 **Sandbox auth settings** *(v1.0.79-8+, breaking change)*: The `/sandbox` configuration dialog now groups git, `gh`, and (on macOS) keychain settings under a new **Auth** tab. The underlying settings keys moved from `sandbox.gitAuth`/`sandbox.ghAuth` to `sandbox.auth.git`/`sandbox.auth.gh`. There is no automatic migration — the old keys are silently ignored in settings files, and SDK requests that still send them are rejected as invalid. Update any saved configuration to the new key names.
 
 **`worktreeBaseRef` setting** *(v1.0.79-8+)*: Controls whether `/worktree`, `/worktree new`, and the `--worktree` startup flag create the new worktree from `HEAD` or from the remote default branch. All three now default to `HEAD`; previously `--worktree` defaulted to starting from the remote default branch. Set this in `/settings` if you want worktrees to branch from the remote default instead.
+
+**Faster search in large monorepos** *(v1.0.79+)*: For large repositories, the CLI now uses [tgrep](https://github.com/microsoft/tgrep) (trigram-indexed grep) instead of ripgrep for regex search, speeding up codebase exploration in big monorepos.
+
+**The `/app` command** *(v1.0.79+, requires GitHub Copilot app 1.1.3+)*: Opens the current CLI session in the GitHub Copilot desktop app, landing directly on that session instead of the app's Home view with the wrong folder. Useful when you start a task in the terminal but want to switch to the desktop app's richer session UI mid-task.
+
+**`pinnedPrompts` setting** *(v1.0.79+)*: Prompt pinning is off by default. Set `pinnedPrompts` to `true` in `/settings` to enable it if you rely on pinning frequently used prompts.
 
 The `--attachment` flag (available in prompt mode, `-p`) lets you attach files — images or native documents — to the initial prompt in non-interactive mode:
 

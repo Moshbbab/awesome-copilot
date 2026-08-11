@@ -3,7 +3,7 @@ title: 'Getting Started with the GitHub Copilot app'
 description: 'Learn about the GitHub Copilot app, a desktop experience built for agent-native development. Understand its key features and who it''s for.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-07
+lastUpdated: 2026-08-11
 estimatedReadingTime: '8 minutes'
 tags:
   - copilot-app
@@ -98,6 +98,15 @@ Agent Merge also understands **stacked pull requests**: it shows a stack summary
 ### Requesting Code Reviews
 
 From the app, you can request a Copilot code review on a pull request—and re-request a review even from reviewers who already responded—without leaving the session. This keeps the review loop inside the same workspace where the change was made.
+
+### Side Chat and Recent Improvements
+
+Recent app releases (v1.1.7) added several refinements for parallel and orchestrated work:
+
+- **Ask in Side chat**: While answering a question a session asks mid-task, you can open a Side chat to explore options without committing to an answer yet, then return to the original question when ready.
+- **Automatic repo rename/transfer detection**: My Work now detects when a connected repository was renamed or transferred on GitHub and updates your local project to match, instead of leaving a stale reference.
+- **Orchestrator child sessions in existing checkouts**: Orchestrators can create child sessions inside a project's existing local checkout instead of always spinning up a new isolated worktree, which is useful when you want related sub-tasks to share the same working directory.
+- **Better pull request template discovery**: PR creation now finds templates in more repository locations (including the repo root and a `docs` folder), not just `.github/`.
 
 ## Who is the Copilot app for?
 
