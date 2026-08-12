@@ -388,6 +388,10 @@ Settings file: `.vscode/settings.json` or global user settings
 }
 ```
 
+**Agent Host** *(VS Code 1.133+)*: The [Agent Host](https://code.visualstudio.com/docs/agents/concepts/agent-host) lets multiple VS Code windows connect to the same running agent session, and runs harnesses like Copilot, Claude, and Codex in a dedicated process built on the Agent Host Protocol. The Copilot harness is powered by the [Copilot SDK](https://www.npmjs.com/package/@github/copilot-sdk), which keeps its behavior aligned with the Copilot CLI and the standalone Copilot app. In a Claude session on the agent host, the model picker now groups models under **Anthropic** (billed to your API key) and **Copilot** (billed to your subscription), so you can switch providers between turns.
+
+**Sticky scroll for prompts** *(VS Code 1.133+)*: Enable `chat.stickyScroll.enabled` to pin the prompt you've scrolled past to the top of the chat panel, so long conversations stay easy to navigate—select the pinned prompt to jump back to it, or use the previous/next buttons to step through your prompt history.
+
 ### Visual Studio
 
 Settings: Tools → Options → GitHub Copilot

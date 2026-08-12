@@ -194,6 +194,8 @@ That means you should think about delegation features in product-specific terms:
 
 If you share agent files across surfaces, document those differences so users know which behaviors are portable and which are editor-specific.
 
+**VS Code Agent Host** *(v1.133+)*: VS Code's [Agent Host](https://code.visualstudio.com/docs/agents/concepts/agent-host) runs agent harnesses—Copilot, Claude, Codex, and others—in a dedicated background process built on the Agent Host Protocol, so the same session can be reconnected to from multiple VS Code windows. The Copilot harness runs on the [Copilot SDK](https://www.npmjs.com/package/@github/copilot-sdk), keeping its delegation behavior consistent with the Copilot CLI and standalone Copilot app. This is a separate concept from in-conversation subagents: the agent host manages where and how a session runs, while subagents are workers a running session delegates to.
+
 ## Common questions
 
 **Do users always invoke subagents directly?**

@@ -247,6 +247,18 @@ An installable package that extends GitHub Copilot CLI with a bundled set of age
 
 ---
 
+### Agent Host
+
+A VS Code component (based on the [Agent Host Protocol](https://microsoft.github.io/agent-host-protocol/)) that runs agent harnesses—Copilot, Claude, Codex, and others—in a dedicated process so the same agent session can be connected to from multiple VS Code windows at once. The agent host's Copilot harness is powered by the [Copilot SDK](https://www.npmjs.com/package/@github/copilot-sdk), aligning its behavior with the Copilot CLI, the standalone Copilot app, and other Copilot products. As of VS Code 1.133, the agent host also lets a Claude session mix models from both Anthropic (billed to your API key) and Copilot (billed to your subscription) within the same conversation, switching per turn from the model picker.
+
+**When to use**: When you want to keep an agent session running and switch between VS Code windows, or when you want one conversation to draw on both Copilot-hosted and directly-configured models.
+
+**Learn more**: [VS Code Agent Host documentation](https://code.visualstudio.com/docs/agents/concepts/agent-host)
+
+**Related terms**: [Agent](#agent), [Coding Agent](#coding-agent)
+
+---
+
 ### Tools
 
 Capabilities that GitHub Copilot can invoke to perform actions or retrieve information. Tools fall into two categories:
