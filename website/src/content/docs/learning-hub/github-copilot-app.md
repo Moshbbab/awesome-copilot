@@ -3,7 +3,7 @@ title: 'Getting Started with the GitHub Copilot app'
 description: 'Learn about the GitHub Copilot app, a desktop experience built for agent-native development. Understand its key features and who it''s for.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-28
+lastUpdated: 2026-09-02
 estimatedReadingTime: '8 minutes'
 tags:
   - copilot-app
@@ -98,6 +98,17 @@ Agent Merge also understands **stacked pull requests**: it shows a stack summary
 ### Requesting Code Reviews
 
 From the app, you can request a Copilot code review on a pull request—and re-request a review even from reviewers who already responded—without leaving the session. This keeps the review loop inside the same workspace where the change was made.
+
+### Customize (v1.1.13+)
+
+**Customize** is a unified view, now available to everyone, for browsing and managing everything that extends the Copilot app: plugins, skills, MCP servers, and canvases. Instead of hunting through separate settings screens, Customize brings it all into one place:
+
+- **Featured tab**: Discover editor's picks and integrations, including connectors for **Azure DevOps** and **Figma**, alongside planning and shipping tools
+- **Installed tab**: See every installed skill, plugin, canvas, agent extension, and MCP server with consistent icons and source labels, and update outdated items in place
+- **Personal skills**: Create, edit, or remove your own skills directly from Customize—no need to hand-author `SKILL.md` files in a repository
+- **Canvas discovery**: Browse featured canvases with clear Install/Installing states, view provider requirements, and start a new session directly from a canvas's details
+
+Open Customize from the app's sidebar to explore what's available before installing, or to manage what you already have.
 
 ## Who is the Copilot app for?
 
