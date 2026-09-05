@@ -3,7 +3,7 @@ title: 'Building Custom Agents'
 description: 'Learn how to create specialized GitHub Copilot agents with custom personas, tool integrations, and domain expertise.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-09
+lastUpdated: 2026-09-05
 estimatedReadingTime: '10 minutes'
 tags:
   - agents
@@ -72,6 +72,34 @@ tools: ['codebase', 'terminal', 'github']
 **description** (required): A clear summary of what the agent does. This is shown in the agent picker and helps users find the right agent.
 
 **model** (recommended): The AI model that powers the agent. Choose based on the complexity of the task—use more capable models for nuanced reasoning.
+
+**Model fallback lists** *(v1.0.83+)*: `model` can also be a list of several models, tried in order until one is available to your account. This keeps an agent usable even when your preferred model is temporarily unavailable or not enabled for your plan:
+
+```yaml
+---
+name: 'Security Reviewer'
+description: 'Expert security auditor that reviews code for OWASP vulnerabilities'
+model:
+  - Claude Opus 4.5
+  - Claude Sonnet 4
+  - GPT-5
+tools: ['codebase', 'terminal', 'github']
+---
+```
+
+Set `model-policy: required` alongside a model list to keep model changes restricted to that list — this prevents a user (or a `/model` switch mid-session) from moving the agent onto a model outside the approved set:
+
+```yaml
+---
+name: 'Security Reviewer'
+description: 'Expert security auditor that reviews code for OWASP vulnerabilities'
+model:
+  - Claude Opus 4.5
+  - Claude Sonnet 4
+model-policy: required
+tools: ['codebase', 'terminal', 'github']
+---
+```
 
 **reasoningEffort** *(v1.0.66+)*: Override the reasoning effort level for this agent. Accepted values are `low`, `medium`, and `high`. This lets you pin specific agents to a cost/quality tradeoff regardless of the user's global setting — for example, a quick code-formatting agent can use `low` effort, while a security reviewer uses `high`:
 
