@@ -321,6 +321,8 @@ You can also open the `/mcp` manager while the agent is working to toggle server
 
 **Toggling servers on and off** (v1.0.66+): From the `/mcp` list view, you can **enable or disable individual MCP servers** without editing your config file. Select a server in the list and toggle it — disabled servers won't start in future sessions and their tools won't be available to agents. This is useful for temporarily disabling a server that's causing slowdowns or errors without removing it from your configuration entirely.
 
+**Improved reliability after restarts and sub-agent turns** *(v1.0.83+)*: MCP tools remain callable even after an MCP server restarts mid-session, instead of the connection silently going stale. MCP servers configured by a custom agent also stay available after built-in sub-agent turns complete, so agent-declared servers no longer need to be reconnected between delegated tasks. OAuth-authenticated MCP servers also connect more reliably during session startup (v1.0.84+).
+
 **Common causes and fixes**:
 
 | Symptom | Likely Cause | Fix |
