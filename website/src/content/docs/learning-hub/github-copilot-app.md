@@ -3,7 +3,7 @@ title: 'Getting Started with the GitHub Copilot app'
 description: 'Learn about the GitHub Copilot app, a desktop experience built for agent-native development. Understand its key features and who it''s for.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-02
+lastUpdated: 2026-09-11
 estimatedReadingTime: '8 minutes'
 tags:
   - copilot-app
@@ -55,6 +55,8 @@ Instead of checking GitHub, your CLI, and VS Code for updates, everything is in 
 The Copilot app includes built-in automations that can run scheduled tasks for you using the same agentic technology. You can use templates out of the box or create your own.
 
 Automations run in the context of a repository, so they can access issues, pull requests, and code. You can also choose whether they run as a plan, an interactive session, or on autopilot.
+
+**Autopilot goals** *(v1.1.15+)*: The `/goal` command sets a persistent objective for autopilot to work towards in a local session, instead of only reacting to your latest prompt. A **Goal pill** in the composer shows the objective's live status (Active, Paused, Done) and can be expanded to see the completion summary, pause reason, turn count, and AI Credits usage *(v1.1.17+)*.
 
 ### Isolated Worktrees for Parallel Work
 
@@ -108,6 +110,10 @@ Agent Merge also understands **stacked pull requests**: it shows a stack summary
 ### Requesting Code Reviews
 
 From the app, you can request a Copilot code review on a pull request—and re-request a review even from reviewers who already responded—without leaving the session. This keeps the review loop inside the same workspace where the change was made.
+
+### Editing Issues and Pull Requests Directly
+
+*(v1.1.18+)* You can edit issue and pull request titles and descriptions, and edit, delete, or hide comments, directly from the app — an edited indicator is shown on any comment you've changed. Pull request **fix buttons** also gained a chevron with a **"Fix with instructions"** option, letting you add guidance before an agent runs the fix instead of accepting the default behavior.
 
 ## Who is the Copilot app for?
 
