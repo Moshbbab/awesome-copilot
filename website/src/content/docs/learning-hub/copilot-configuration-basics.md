@@ -3,7 +3,7 @@ title: 'Copilot Configuration Basics'
 description: 'Learn how to configure GitHub Copilot at user, workspace, and repository levels to optimize your AI-assisted development experience.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-07
+lastUpdated: 2026-09-13
 estimatedReadingTime: '10 minutes'
 tags:
   - configuration
@@ -770,6 +770,8 @@ The `/autopilot` command (v1.0.45+) is a quick in-session toggle that switches b
 ```
 
 Use `/autopilot` when you want to flip between supervised and unsupervised operation mid-session without typing out the full `/allow-all on` or `/allow-all off` commands.
+
+**Persistent objectives with `/goal` (app v1.1.18+)**: The `/goal` command sets a persistent objective for the session — a standing task description the agent keeps working toward across multiple turns, shown in an autopilot goal panel with live progress. As of app v1.1.18, `/autopilot` also sets this same persistent objective instead of only switching the session mode, so toggling into autopilot now carries the same "keep working toward this" behavior that `/goal` provides. The goal panel infers an objective from your last prompt if you haven't set one explicitly, and can be expanded or collapsed by hand.
 
 > **Enhanced autopilot (v1.0.64+)**: When autopilot mode is active — including when launched with `--autopilot` at startup or during automatic continuation turns — the agent automatically handles elicitation dialogs, `ask_user` prompts, sampling requests, and permission prompts without surfacing them as interactive dialogs. This means long-running automated sessions can proceed end-to-end without manual confirmation steps.
 
